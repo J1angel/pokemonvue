@@ -8,9 +8,8 @@
         height="100"
     >
 
-      <v-icon size="100px" color="teal lighten-1">mdi-car-estate</v-icon>
-
-      <v-toolbar-title style="font-size: x-large" v-if="!$vuetify.breakpoint.mobile">Car Maker</v-toolbar-title>
+      <v-icon size="95px" color="teal lighten-1">mdi-pokemon-go</v-icon>
+      <v-toolbar-title v-if="!$vuetify.breakpoint.mobile" class="title-design-2">Car Maker</v-toolbar-title>
 
       <v-spacer></v-spacer>
       <v-btn color="teal lighten-1" dark >LOG OUT</v-btn>

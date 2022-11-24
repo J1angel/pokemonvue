@@ -10,9 +10,3 @@ export default {
   name: 'App',
 }
 </script>
-<style>
-.myFont {
-  font-family: 'Mansalva', cursive;
-}
-</style>
-

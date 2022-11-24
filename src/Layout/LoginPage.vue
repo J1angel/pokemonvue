@@ -1,48 +1,44 @@
 <template>
-  <v-app id="inspire">
     <div>
-      <NavBar></NavBar>
       <v-main>
-
+        <v-parallax src="https://cdn.vuetifyjs.com/images/parallax/material.jpg" height="100%">
         <!-- Provides the application the proper gutter -->
-        <v-container fluid style="height: 600px" class="mb-12 d-flex flex-column justify-center align-center">
+        <v-container fluid style="height: 920px" class="mb-12 d-flex flex-column justify-center align-center">
           <v-main>
             <v-container fluid fill-height>
               <v-layout align-center justify-center>
                 <v-card class="elevation-12" width="500px">
-                  <v-card-title class="justify-center">Login
-                  </v-card-title>
+                  <v-img
+                      height="150px"
+                      src="https://www.freepnglogos.com/uploads/pokemon-logo-png-0.png"
+                      lazy-src="https://www.freepnglogos.com/uploads/pokemon-logo-png-0.png"
+                  > </v-img>
                   <v-card-text>
-                    <v-form>
-                      <TextBox
-                          v-for="(item,i) in textboxdesign" :key="i"
-                          :items="item"
-                          v-model="credentials[i]"
-                      >
-
-                      </TextBox>
-                    </v-form>
-<!--                    <p style="color: darkred">{{message}}</p>-->
+                    <LoginForm></LoginForm>
+                    <v-card-text class="default-text-size text-center">
+                      Not a member? <span @click="resgisterUserLink" class="text-color-link">Register now</span>
+                    </v-card-text>
                   </v-card-text>
-                  <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn color="teal lighten-1" dark>Login</v-btn>
-                  </v-card-actions>
                 </v-card>
               </v-layout>
             </v-container>
           </v-main>
 
         </v-container>
+        </v-parallax>
       </v-main>
     </div>
 
-  </v-app>
 </template>
 
 <script>
+import router from "@/routes";
+import LoginForm from "@/components/LoginForm";
 export default {
   name: 'LoginPage',
+  components:{
+    LoginForm
+  },
 
   data: () => ({
     textboxdesign:{
@@ -63,6 +59,11 @@ export default {
     }
 
   }),
+  methods:{
+    resgisterUserLink(){
+      router.push({name:'RegisterPage'})
+    }
+  }
 
 };
 </script>
