@@ -78,9 +78,9 @@ export default {
         }
       }else if(key === 1){
         this.key1++
-        /*if (this.key1 > 1){
-          this.$refs.stud1.getmanufacturers();
-        }*/
+        if (this.key1 > 1){
+          this.$refs.stud1.getUserReactionsNew();
+        }
       }
     },
   }

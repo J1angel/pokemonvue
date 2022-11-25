@@ -4,6 +4,7 @@ import RegisterPage from '@/Layout/RegisterPage'
 import HomePage from '@/Layout/HomePage'
 import Vue from "vue"
 import store from "@/store";
+import ProfilePage from '@/Layout/ProfilePage'
 
 Vue.use(VueRouter)
 
@@ -22,6 +23,18 @@ const routes = [
         path: '/homepage',
         component: HomePage,
         name: 'HomePage',
+        beforeEnter: (to, from, next) => {
+            if (store.state.authUser.is_authenticated && store.state.authUser.is_authenticated){
+                next()
+            }else{
+                router.push('/')
+            }
+        }
+    },
+    {
+        path: '/profilepage',
+        component: ProfilePage,
+        name: 'ProfilePage',
         beforeEnter: (to, from, next) => {
             if (store.state.authUser.is_authenticated && store.state.authUser.is_authenticated){
                 next()
