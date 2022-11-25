@@ -76,19 +76,10 @@ export const manufacture = {
            }).catch(error => {
                console.log(error)
            })
-
-
        },
-        /* changepage({commit}){
-            let a = this.state.cars.page + 1
-            commit('SET_PAGE', a)
-        },
-        revertpage({commit}){
-            commit('SET_PAGE', 1)
-        },
         resetState({commit}){
             commit('resetState')
-        }*/
+        }
     }
 
 }

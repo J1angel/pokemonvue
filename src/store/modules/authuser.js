@@ -81,6 +81,7 @@ export const authuser = {
         },
         logoutuUser({commit}){
             commit('resetState')
+
             router.push('/')
         }
     }

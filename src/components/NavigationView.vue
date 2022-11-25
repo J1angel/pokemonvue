@@ -18,7 +18,7 @@
       <v-spacer></v-spacer>
       <v-btn color="teal lighten-1" dark @click="profileLink" v-if="navigation === 0">HOME PAGE</v-btn>&nbsp;
       <v-btn color="teal lighten-1" dark @click="homePageLink" v-if="navigation === 1">PROFILE</v-btn>&nbsp;
-      <v-btn color="teal lighten-1" dark >LOG OUT</v-btn>
+      <v-btn color="teal lighten-1" dark @click="logoutUser" >LOG OUT</v-btn>
     </v-app-bar>
   </div>
 
@@ -36,7 +36,8 @@ export default {
   },
   methods:{
     ...mapActions({
-      setNavigationPage:'pagesHistory/setNaviagateProfile'
+      setNavigationPage:'pagesHistory/setNaviagateProfile',
+      logoutUser:'authUser/logoutuUser'
     }),
     profileLink(){
       this.setNavigationPage(1)
@@ -45,6 +46,9 @@ export default {
     homePageLink(){
       this.setNavigationPage(0)
       router.push({name:'HomePage'})
+    },
+    logoutUser(){
+      this.logoutUser()
     }
   }
 }
