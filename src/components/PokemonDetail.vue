@@ -61,11 +61,12 @@
               {{ ability.ability.name }}
             </v-chip>
           </v-chip-group>
-          <v-card-actions>
+          <v-card-actions class="float-right">
 
-            <v-icon>mdi-heart</v-icon>
-            <v-icon>mdi-heart</v-icon>
+            <v-btn rounded color="red darken-3"><v-icon color="white" @click="pokemonLike(search_value)">mdi-thumb-up</v-icon></v-btn>
+            <v-btn rounded  color="blue-grey darken-1"><v-icon color="white"  @click="pokemonHate(search_value)">mdi-thumb-down</v-icon></v-btn>
           </v-card-actions>
+          <br><br>
         </v-card-text>
 
       </v-card>
@@ -73,10 +74,15 @@
 </template>
 <script>
 import {get} from 'vuex-pathify';
+import PokemonApi from '@/apilinks/pokemonapi'
 export default {
   data(){
     return {
-      dialog:false
+      dialog:false,
+      reaction:{
+        pokemon_name:'',
+        image_link:''
+      }
     }
   },
   computed:{
@@ -90,7 +96,30 @@ export default {
   methods:{
      showDialog(){
        this.dialog = true
-     }
+     },
+     pokemonLike(item){
+       let {name, sprites} = item
+       let {front_default} = sprites
+       this.reaction.pokemon_name = name
+       this.reaction.image_link = front_default
+       PokemonApi.pokemonLike(this.reaction).then(response => {
+         console.log(response)
+       }).catch(error => {
+         console.log(error)
+       })
+     },
+    pokemonHate(item){
+      let {name, sprites} = item
+      let {front_default} = sprites
+      this.reaction.pokemon_name = name
+      this.reaction.image_link = front_default
+      PokemonApi.pokemonHate(this.reaction).then(response => {
+        console.log(response)
+      }).catch(error => {
+        console.log(error)
+      })
+    }
+
   }
 }
 </script>

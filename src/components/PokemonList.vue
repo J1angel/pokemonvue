@@ -18,6 +18,7 @@
               class="mx-auto text-center d-flex flex-column align-center justify-center"
               height="200"
               max-width="250"
+              @click="showPokemon(item.name)"
           >
             <v-sheet color="color3">
               <v-card-text>
@@ -37,6 +38,9 @@
   </div>
 </template>
 <script>
+import store from "@/store";
+import {mapActions} from "vuex";
+
 export default {
   props:['items'],
   data() {
@@ -44,5 +48,21 @@ export default {
       imageURL: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'
     }
   },
+  computed:{
+    search: {
+      get: () => store.getters['searchPokemon/search'],
+      set: (value) => store.commit('searchPokemon/SET_SEARCH', value)
+    },
+  },
+  methods:{
+    ...mapActions({
+      setSearchValue:'searchPokemon/setSearchValue'
+    }),
+    showPokemon(item){
+      this.search = item
+      this.setSearchValue()
+      this.$root.$emit('showDialog')
+    }
+  }
 }
 </script>
