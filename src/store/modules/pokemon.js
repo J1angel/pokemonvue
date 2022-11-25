@@ -4,7 +4,6 @@ const getDefaultState = () => {
     return {
         pokemons:[],
         current_url:'https://pokeapi.co/api/v2/pokemon/',
-        prev_url:'',
         next_url:''
     }
 }
@@ -48,7 +47,7 @@ export const manufacture = {
 
     actions:{
         setPokemons({state,commit}){
-            if (state.next_url !== null){
+            if (state.next_url !== ''){
                 PokemonApi.getPokemons(state.next_url).then(response => {
                     response.data.results.forEach(pokemon => {
                         pokemon.id = pokemon.url.split('/')
@@ -64,7 +63,6 @@ export const manufacture = {
        setPokemonsNew({state,commit}){
            PokemonApi.getPokemons(state.current_url).then(response => {
                let new_pokemons = []
-               console.log(response.data.next)
                response.data.results.forEach(pokemon => {
                    pokemon.id = pokemon.url.split('/')
                        .filter(function(part) { return !!part }).pop();

@@ -79,9 +79,12 @@ export const authuser = {
         updateUser({commit}, data){
             commit('user', data)
         },
-        logoutuUser({commit}){
+        logoutUser({commit}){
             commit('resetState')
-
+            store.dispatch('pagesHistory/resetState')
+            store.dispatch('userReactions/resetState')
+            store.dispatch('pokemon/resetState')
+            store.dispatch('searchPokemon/resetState')
             router.push('/')
         }
     }

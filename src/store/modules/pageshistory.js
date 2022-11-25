@@ -1,6 +1,7 @@
 const getDefaultState = () => {
     return {
         tab:0,
+        navigate_profile:0,
     }
 }
 export const pageshistory = {

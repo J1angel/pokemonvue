@@ -1,14 +1,12 @@
 <template>
-  <v-dialog
-      v-model="dialog"
-      max-width="374"
-      class="mx-auto my-12"
-  >
-      <v-card v-if="search_value?.length === 0">
-        NOT FOUND
-      </v-card>
+  <div>
+    <v-dialog
+        v-model="dialog"
+        max-width="374"
+        class="mx-auto my-12"
+        v-if="search_value?.length !== 0"
+    >
       <v-card
-          v-else
       >
         <template slot="progress">
           <v-progress-linear
@@ -70,19 +68,43 @@
         </v-card-text>
 
       </v-card>
-  </v-dialog>
+    </v-dialog>
+    <v-snackbars :objects.sync="objects"  top right>
+      <template v-slot:default="{ message }">
+        <v-layout align-center pr-4>
+          <v-icon class="pr-3" dark large>mdi-robot-angry</v-icon>
+          {{ message }}
+        </v-layout>
+      </template>
+    </v-snackbars>
+    <v-snackbars :objects.sync="objectss"  top right>
+      <template v-slot:default="{ message }">
+        <v-layout align-center pr-4>
+          <v-icon class="pr-3" dark large>mdi-hand-okay</v-icon>
+          {{ message }}
+        </v-layout>
+      </template>
+    </v-snackbars>
+  </div>
+
 </template>
 <script>
 import {get} from 'vuex-pathify';
-import PokemonApi from '@/apilinks/pokemonapi'
+import PokemonApi from '@/apilinks/pokemonapi';
+import VSnackbars from "v-snackbars";
 export default {
+  components:{
+    "v-snackbars": VSnackbars,
+  },
   data(){
     return {
       dialog:false,
       reaction:{
         pokemon_name:'',
-        image_link:''
-      }
+        image_link:'',
+      },
+      objects:[],
+      objectss:[]
     }
   },
   computed:{
@@ -103,9 +125,17 @@ export default {
        this.reaction.pokemon_name = name
        this.reaction.image_link = front_default
        PokemonApi.pokemonLike(this.reaction).then(response => {
-         console.log(response)
+         this.objectss.push({
+           message: response.data.message,
+           color:"green darken-2",
+           timeout:3000
+         })
        }).catch(error => {
-         console.log(error)
+         this.objects.push({
+           message:error.response.data.message,
+           color:"red darken-4",
+           timeout:3000
+         })
        })
      },
     pokemonHate(item){
@@ -114,9 +144,17 @@ export default {
       this.reaction.pokemon_name = name
       this.reaction.image_link = front_default
       PokemonApi.pokemonHate(this.reaction).then(response => {
-        console.log(response)
+        this.objectss.push({
+          message: response.data.message,
+          color:"green darken-2",
+          timeout:3000
+        })
       }).catch(error => {
-        console.log(error)
+        this.objects.push({
+          message:error.response.data.message,
+          color:"red darken-4",
+          timeout:3000
+        })
       })
     }
 

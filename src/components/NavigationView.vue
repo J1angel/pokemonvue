@@ -37,7 +37,7 @@ export default {
   methods:{
     ...mapActions({
       setNavigationPage:'pagesHistory/setNaviagateProfile',
-      logoutUser:'authUser/logoutuUser'
+      logout:'authUser/logoutUser'
     }),
     profileLink(){
       this.setNavigationPage(1)
@@ -48,7 +48,7 @@ export default {
       router.push({name:'HomePage'})
     },
     logoutUser(){
-      this.logoutUser()
+      this.logout()
     }
   }
 }
