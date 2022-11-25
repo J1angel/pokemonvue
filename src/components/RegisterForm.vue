@@ -78,7 +78,6 @@
 </template>
 <script>
 import {mapActions} from "vuex";
-import {get} from 'vuex-pathify';
 import RegisterApi from '@/apilinks/register';
 import router from "@/routes";
 
@@ -119,7 +118,6 @@ export default {
       return () =>
           this.user_credentials.password === this.user_credentials.confirm_password || "Password must match";
     },
-    is_authenticated:get('authuser/is_authenticated'),
   },
   methods:{
     ...mapActions({

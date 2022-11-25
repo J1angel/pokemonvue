@@ -10,8 +10,8 @@
                 <v-card class="elevation-12" width="500px">
                   <v-img
                       height="150px"
-                      src="https://www.freepnglogos.com/uploads/pokemon-logo-png-0.png"
-                      lazy-src="https://www.freepnglogos.com/uploads/pokemon-logo-png-0.png"
+                      :src="imagesource"
+                      :lazy-src="imagesource"
                   > </v-img>
                   <v-card-text>
                     <LoginForm></LoginForm>
@@ -34,10 +34,11 @@
 <script>
 import router from "@/routes";
 import LoginForm from "@/components/LoginForm";
+
 export default {
   name: 'LoginPage',
   components:{
-    LoginForm
+    LoginForm,
   },
 
   data: () => ({
@@ -56,8 +57,8 @@ export default {
     credentials:{
       username:'',
       password:''
-    }
-
+    },
+    imagesource: 'https://www.freepnglogos.com/uploads/pokemon-logo-png-0.png',
   }),
   methods:{
     resgisterUserLink(){

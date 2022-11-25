@@ -7,13 +7,17 @@ const getDefaultState = () => {
         is_authenticated: false,
         userinfo:{},
         token:'',
-        statusmessge:''
+        status_message:''
     }
 }
 
 export const authuser = {
     namespaced: true,
-    state: Object.assign({}, getDefaultState()),
+    state: {  is_authenticated: false,
+        userinfo:{},
+        token:'',
+        status_message:''
+    },
 
     getters:{
         is_authenticated(state) {
@@ -25,8 +29,8 @@ export const authuser = {
         current_token(state){
             return state.bearer
         },
-        current_statusmessage(state){
-            return state.statusmessge
+        current_status_message(state){
+            return state.status_message
         }
     },
 
@@ -40,8 +44,8 @@ export const authuser = {
         token(state,value){
             state.token = value
         },
-        statusmessge(state,value) {
-            state.statusmessge = value
+        status_message(state,value) {
+            state.status_message = value
         },
         resetState(state) {
             Object.assign(state, getDefaultState())
@@ -60,10 +64,10 @@ export const authuser = {
                         commit('is_authenticated', true)
                         router.push({name:'homepage'})
                     }).catch(error => {
-                        commit('statusmessge',error.response.data.error)
+                        commit('status_message',error.response.data.error)
                     })
                 }).catch(error => {
-                    commit('statusmessge',error.response.data.error)
+                    commit('status_message',error.response.data.error)
                 })
             }
         },

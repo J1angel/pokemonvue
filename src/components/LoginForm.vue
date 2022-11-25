@@ -29,7 +29,7 @@
 
 </template>
 <script>
-import {mapActions} from "vuex";
+import {mapActions} from 'vuex';
 import {get} from 'vuex-pathify';
 
 export default {
@@ -39,7 +39,6 @@ export default {
       username:'',
       password:'',
     },
-    error_message:'',
     button_allowed:true
 
   }),
@@ -52,7 +51,7 @@ export default {
     },
   },
   computed:{
-    is_authenticated:get('authuser/is_authenticated'),
+    error_message:get('authUser/status_message'),
   },
   methods:{
     ...mapActions({
