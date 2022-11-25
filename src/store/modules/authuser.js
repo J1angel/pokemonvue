@@ -76,6 +76,9 @@ export const authuser = {
             commit('token', data.token)
             router.push({name:'HomePage'})
         },
+        updateUser({commit}, data){
+            commit('user', data)
+        },
         logoutuUser({commit}){
             commit('resetState')
             router.push('/')

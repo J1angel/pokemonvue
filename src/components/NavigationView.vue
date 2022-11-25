@@ -16,7 +16,8 @@
       > </v-img>
 
       <v-spacer></v-spacer>
-      <v-btn color="teal lighten-1" dark @click="profileLink">PROFILE</v-btn>&nbsp;
+      <v-btn color="teal lighten-1" dark @click="profileLink" v-if="navigation === 0">HOME PAGE</v-btn>&nbsp;
+      <v-btn color="teal lighten-1" dark @click="homePageLink" v-if="navigation === 1">PROFILE</v-btn>&nbsp;
       <v-btn color="teal lighten-1" dark >LOG OUT</v-btn>
     </v-app-bar>
   </div>
@@ -24,13 +25,26 @@
 </template>
 <script>
 import router from '@/routes'
+import {mapActions} from "vuex";
+import {get} from 'vuex-pathify';
 export default {
   data: () => ({
     imagesource:  require('@/assets/pokemonimage.png')
   }),
+  computed:{
+    navigation: get('pagesHistory/current_navigate_profile')
+  },
   methods:{
+    ...mapActions({
+      setNavigationPage:'pagesHistory/setNaviagateProfile'
+    }),
     profileLink(){
+      this.setNavigationPage(1)
       router.push({name:'ProfilePage'})
+    },
+    homePageLink(){
+      this.setNavigationPage(0)
+      router.push({name:'HomePage'})
     }
   }
 }

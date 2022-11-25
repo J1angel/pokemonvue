@@ -1,8 +1,8 @@
 import Api from '@/axios';
 import store from '@/store';
 export default {
-    getUserReactions(page){
+    updateInformation(data){
         Api().defaults.headers.common["Authorization"] = `Bearer ${store.state.authUser.token}`;
-        return Api().get(`/auth/getuserreaction?page=${page}`)
+        return Api().post(`/auth/updateInformation`,data)
     },
 }
