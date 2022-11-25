@@ -73,9 +73,9 @@ export default {
       this.setTab(key)
       if (key === 0){
         this.key0++
-        /*if (this.key0 > 1){
-          this.$refs.stud.getcars();
-        }*/
+        if (this.key0 > 1){
+          this.$refs.stud.setPokemonsNew();
+        }
       }else if(key === 1){
         this.key1++
         /*if (this.key1 > 1){
@@ -86,9 +86,4 @@ export default {
   }
 }
 </script>
-<style>
-.active {
-  color: #26A69A !important;
-  background-color: #ffff !important;
-}
-</style>
+

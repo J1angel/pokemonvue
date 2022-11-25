@@ -11,7 +11,7 @@
             <v-layout align-center justify-center>
               <v-card class="elevation-12" width="800px">
                 <v-img
-                    height="150px"
+                    height="200px"
                     :src="imagesource"
                     :lazy-src="imagesource"
                 > </v-img>
@@ -37,7 +37,7 @@ export default {
     RegisterForm
   },
   data: () => ({
-    imagesource:'https://www.freepnglogos.com/uploads/pokemon-logo-png-0.png',
+    imagesource:  require('@/assets/pokemonimage.png')
   }),
 
 };

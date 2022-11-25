@@ -9,7 +9,7 @@
     >
 
       <v-img
-          max-height="2000"
+          max-height="200"
           max-width="200"
           :src="imagesource"
           :lazy-src="imagesource"
@@ -24,7 +24,7 @@
 <script>
 export default {
   data: () => ({
-    imagesource:'https://www.freepnglogos.com/uploads/pokemon-logo-png-0.png',
+    imagesource:  require('@/assets/pokemonimage.png')
   }),
 }
 </script>

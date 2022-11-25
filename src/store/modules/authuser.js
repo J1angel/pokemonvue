@@ -55,14 +55,14 @@ export const authuser = {
     actions:{
         login({commit},credentials){
             if (store.getters["authuser/is_authenticated"]){
-                router.push('/homepage')
+                router.push({name:'HomePage'})
             }else {
                 LoginApi.loginUser(credentials).then(response => {
                     commit('token', response.data.token)
                     LoginApi.user().then(response => {
                         commit('user', response.data)
                         commit('is_authenticated', true)
-                        router.push({name:'homepage'})
+                        router.push({name:'HomePage'})
                     }).catch(error => {
                         commit('status_message',error.response.data.error)
                     })
@@ -74,7 +74,7 @@ export const authuser = {
         loginRegisterUser({commit},data){
             commit('is_authenticated', data.status)
             commit('token', data.token)
-            router.push('/homepage')
+            router.push({name:'HomePage'})
         },
         logoutuUser({commit}){
             commit('resetState')

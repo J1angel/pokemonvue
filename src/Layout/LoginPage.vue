@@ -58,7 +58,7 @@ export default {
       username:'',
       password:''
     },
-    imagesource: 'https://www.freepnglogos.com/uploads/pokemon-logo-png-0.png',
+    imagesource:  require('@/assets/pokemonimage.png')
   }),
   methods:{
     resgisterUserLink(){

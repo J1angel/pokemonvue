@@ -21,7 +21,7 @@ const routes = [
     {
         path: '/homepage',
         component: HomePage,
-        name: 'homepage',
+        name: 'HomePage',
         beforeEnter: (to, from, next) => {
             if (store.state.authUser.is_authenticated && store.state.authUser.is_authenticated){
                 next()
